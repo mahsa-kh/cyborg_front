@@ -8,6 +8,9 @@ import { Layout, Menu, Breadcrumb } from 'antd';
 import FormContainer from "./FormContainer";
 import NetworkForm from "./NetworkForm";
 import DecoyTemplateForm from "./DecoyTemplateForm";
+import NetTable from "../components/NetworkTable";
+import DecoyTable from "../components/DecoyTable";
+
 
 import {
   MenuUnfoldOutlined,
@@ -72,7 +75,10 @@ class SiderLayout extends React.Component {
                   Define a Network
                   <Link to="/NetworkForm" />
                 </Menu.Item>
-                <Menu.Item key="3">View Networks</Menu.Item>
+                <Menu.Item key="3">
+                  View Networks
+                  <Link to='/components/NetworkTable' />
+                </Menu.Item>
               </SubMenu>
 
               <SubMenu key="sub2" icon={<VideoCameraOutlined />} title="Decoys" {...this.props}>
@@ -80,7 +86,10 @@ class SiderLayout extends React.Component {
                   Create a Decoy
                   <Link to="/FormContainer" />
                 </Menu.Item>
-                <Menu.Item key="6">View Decoys</Menu.Item>
+                <Menu.Item key="6">
+                  View Decoys
+                  <Link to="/components/DecoyTable" />
+                </Menu.Item>
               </SubMenu>
 
 
@@ -89,7 +98,6 @@ class SiderLayout extends React.Component {
                   Create a Decoy Temp
                   <Link to="/DecoyTemplateForm" />
                 </Menu.Item>
-                <Menu.Item key="9">View Decoy Templates</Menu.Item>
               </SubMenu>
 
           </Menu>
@@ -117,6 +125,20 @@ class SiderLayout extends React.Component {
             <Route exact path="/FormContainer" component={FormContainer} />
             <Route path="/NetworkForm" component={NetworkForm} />
             <Route path="/DecoyTemplateForm" component={DecoyTemplateForm} />
+
+
+
+              <Route
+                path='/components/NetworkTable' exact={true}
+               render={(routeProps) => (<NetTable {...routeProps} data={this.props.datanet} />)}
+            />
+
+
+            <Route
+                path='/components/DecoyTable' exact={true}
+               render={(routeProps) => (<DecoyTable {...routeProps} data={this.props.datadec} />)}
+            />
+
 
           </Content>
 
